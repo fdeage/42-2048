@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/01 23:07:00 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 19:17:22 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 21:13:16 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,43 @@
 # include "libft.h"
 
 # define SQUARE_RANGE	4
-# define SQUARE_SIZE_Y	12
+# define SQUARE_SIZE_Y	16
 # define SQUARE_SIZE_X	8
 # define KEY_ESC		27
 
-# define COLOR_BACK		0
-# define COLOR_0		1
-# define COLOR_2		2
-# define COLOR_4		3
-# define COLOR_8		4
-# define COLOR_16		5
-# define COLOR_32		6
-# define COLOR_ELSE		7
+# define COLOR_BACK		204
+
+# define COLOR_ELSE		205
+
+# define COLOR_F_0		206
+# define COLOR_F_2		207
+# define COLOR_F_4		208
+# define COLOR_F_8		209
+# define COLOR_F_16		210
+# define COLOR_F_32		211
+# define COLOR_F_64		212
+# define COLOR_F_128	213
+# define COLOR_F_256	214
+# define COLOR_F_512	215
+# define COLOR_F_1024	216
+# define COLOR_F_2048	217
+# define COLOR_F_4096	218
+
+# define COLOR_B_0		219
+# define COLOR_B_2		220
+# define COLOR_B_4		221
+# define COLOR_B_8		222
+# define COLOR_B_16		223
+# define COLOR_B_32		224
+# define COLOR_B_64		225
+# define COLOR_B_128	226
+# define COLOR_B_256	227
+# define COLOR_B_512	228
+# define COLOR_B_1024	229
+# define COLOR_B_2048	230
+# define COLOR_B_4096	231
+
+#define TXT_Y			((SQUARE_RANGE + 1) * (SQUARE_SIZE_X) + 2)
 
 enum					e_const
 {
@@ -140,6 +165,6 @@ int						get_tile_color(int value);
 ** reinit_color.c
 */
 
-void					reinit_color(void);
+void					reinit_colors(void);
 
 #endif

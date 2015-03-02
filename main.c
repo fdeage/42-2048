@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:16:53 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 19:15:00 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 21:24:04 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,24 @@ static int	init_ncurses_screen(t_prgm *prgm)
 	else
 		start_color();
 	init_pair(1, COLOR_BLACK, COLOR_BACK);
-	init_pair(3, COLOR_BLACK, COLOR_0);
-	init_pair(2, COLOR_8, COLOR_2);
-	init_pair(4, COLOR_8, COLOR_4);
-	init_pair(8, COLOR_32, COLOR_8);
-	init_pair(16, COLOR_8, COLOR_16);
-	init_pair(32, COLOR_8, COLOR_32);
-	init_pair(33, COLOR_8, COLOR_ELSE);
+	init_pair(3, COLOR_F_0, COLOR_B_0);
+	init_pair(2, COLOR_F_2, COLOR_B_2);
+	init_pair(4, COLOR_F_4, COLOR_B_4);
+	init_pair(8, COLOR_F_8, COLOR_B_8);
+	init_pair(16, COLOR_F_16, COLOR_B_16);
+	init_pair(32, COLOR_F_32, COLOR_B_32);
+	//init_pair(33, COLOR_2, COLOR_ELSE);
+
+
+	init_pair(64, COLOR_F_64, COLOR_B_64);
+	init_pair(128, COLOR_F_128, COLOR_B_128);
+	init_pair(256, COLOR_F_256, COLOR_B_256);
+	init_pair(512, COLOR_F_512, COLOR_B_512);
+	init_pair(1024, COLOR_F_1024, COLOR_B_1024);
+	init_pair(2048, COLOR_F_2048, COLOR_B_2048);
+	init_pair(4096, COLOR_F_4096, COLOR_B_4096);
+
+
 	fprintf(stderr, "nbcol = %d nbcolopair = %d\n", COLORS, COLOR_PAIRS);
 	return (RET_OK);
 }
@@ -67,7 +78,7 @@ static void	init_grid(t_prgm *prgm, int it)
 		{
 			(prgm->grid[i][j]).value = 0;
 			if (it == new1 || it == new2)
-				(prgm->grid[i][j]).value = ((rand() % 2 == 0) ? 2 : 4);
+				(prgm->grid[i][j]).value = ((rand() % 4 == 0) ? 4 : 2);
 			++it;
 			++j;
 		}
@@ -91,11 +102,10 @@ static int	init_game(t_prgm *prgm)
 	//prgm->height = 0;
 	prgm->cont = 0;
 	prgm->clr_pair = -1;
-	//prgm->back_clr = COLOR_BLACK;
-	//prgm->highest = 0;
+	prgm->highest = 0;
 	prgm->begin_time = time(NULL);
 	prgm->score = 0;
-	reinit_color();
+	reinit_colors();
 	return (RET_OK);
 }
 
@@ -114,7 +124,6 @@ int			main(void)
 	ret = CONTINUE_GAME;
 	while (ret == CONTINUE_GAME)
 		ret = run_2048(&prgm);
-	sleep(1);
 	exit_game(&prgm);
 	return (EXIT_SUCCESS);
 }

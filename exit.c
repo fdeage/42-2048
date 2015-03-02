@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:55:16 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 18:56:12 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 21:24:57 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@
 void	exit_on_signal(int signal)
 {
 	(void)signal;
-	ft_putstr_color("Thanks for playing! Your score was: \n", COL_GREEN);
-	init_color(COLOR_BLACK,0,0,0);
-	init_color(COLOR_RED,1000,0,0);
-	init_color(COLOR_GREEN,0,1000,0);
-	init_color(COLOR_YELLOW,1000,1000,0);
-	init_color(COLOR_BLUE,0,0,1000);
-	init_color(COLOR_MAGENTA,1000,0,1000);
-	init_color(COLOR_CYAN,0,1000,1000);
-	init_color(COLOR_WHITE,1000,1000,1000);
+	mvprintw(TXT_Y + 2, 0, "%s", "Thanks for playing! Your score was: \n");
+	sleep(1);
+	init_color(COLOR_BLACK, 0, 0, 0);
+	init_color(COLOR_RED, 1000, 0, 0);
+	init_color(COLOR_GREEN, 0, 1000, 0);
+	init_color(COLOR_YELLOW, 1000, 1000, 0);
+	init_color(COLOR_BLUE, 0, 0, 1000);
+	init_color(COLOR_MAGENTA, 1000, 0, 1000);
+	init_color(COLOR_CYAN, 0, 1000, 1000);
+	init_color(COLOR_WHITE, 1000, 1000, 1000);
 	curs_set(1);
 	echo();
 	endwin();

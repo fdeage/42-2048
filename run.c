@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:38:28 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 19:25:39 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 21:31:53 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include <ncurses.h>
 #include "game_2048.h"
 #include "libft.h"
-
-#define TXT_Y	((SQUARE_RANGE + 1) * (SQUARE_SIZE_X) + 2)
 
 static int	get_score(t_tile grid[SQUARE_RANGE][SQUARE_RANGE])
 {
@@ -93,10 +91,10 @@ int			run_2048(t_prgm *prgm)
 		if (handle_input(prgm, input) == KEY_ARROWS
 			&& ft_memcmp(prgm->new, prgm->grid, sizeof(prgm->grid)) != 0)
 		{
-			prgm->score = get_score(prgm->grid);
-			prgm->highest = ft_max(prgm->highest, prgm->score);
 			ft_memcpy(prgm->grid, prgm->new, sizeof(prgm->grid));
 			ft_bzero(prgm->new, sizeof(prgm->grid));
+			prgm->score = get_score(prgm->grid);
+			prgm->highest = ft_max(prgm->highest, prgm->score);
 			if (create_new_tile(prgm) == ERR_SQUARE_FULL)
 			{
 				sleep(1);
