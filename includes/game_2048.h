@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/01 23:07:00 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/01 23:24:03 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 16:05:52 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 enum					e_const
 {
-	WIN_VALUE = 32
+	WIN_VALUE = 64
 };
 
 enum					e_ret_value
@@ -77,12 +77,14 @@ typedef struct			s_prgm
 {
 	t_tile				grid[SQUARE_RANGE][SQUARE_RANGE];
 	t_tile				new[SQUARE_RANGE][SQUARE_RANGE];
-	int					back_clr;
+//	int					back_clr;
+	int					clr_pair;
 	int					i;
 	int					dup;
 	WINDOW				*win;
-	int					width;
-	int					height;
+	//int					width;
+	//int					height;
+	int					cont;
 	int					highest;
 	time_t				begin_time;
 	size_t				score;
