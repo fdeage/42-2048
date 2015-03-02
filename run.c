@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:38:28 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 17:36:24 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 17:47:41 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,26 @@ static int	prompt_continue(t_prgm *prgm)
 	char	buf[12];
 	int		ret;
 
-	(void)prgm;
-	ft_bzero(buf, 16);
+	ft_bzero(buf, 12);
 	ft_putstr_color("You reached ", COL_LIGHT_GREEN);
 	ft_itoatab(prgm->score, buf);
 	ft_putstr_color(buf, COL_GREEN);
 	ft_putstr_color("! Continue ? [Y/N]\n", COL_LIGHT_GREEN);
+	echo();
 	ret = 1;
-	while ((ret = read(0, &buf, 1)) == 1)
+	while (ret == 1)
 	{
-		ret = 0;
-		if (ft_strcmp("Y", buf))
+		if (read(0, &buf, 1) == -1)
+			return (LEAVE_GAME);
+		if (buf[0] == 'Y' || buf[0] == 'y')
 		{
 			prgm->cont = 1;
+			noecho();
+			ret = 0;
 			return (CONTINUE_GAME);
 		}
-		else if (ft_strcmp("N", buf))
+		else if (buf[0] == 'N' || buf[0] == 'n')
 			return (LEAVE_GAME);
-		else
-			ret = 1;
 	}
 	return (RET_OK);
 }
@@ -82,7 +83,7 @@ int			run_2048(t_prgm *prgm)
 {
 	int		input;
 
-	while (prgm->highest < WIN_VALUE || prgm->cont)
+	while (prgm->score < WIN_VALUE || prgm->cont)
 	{
 		input = getch();
 		if (redim_screen(input) == REDIM_SIGNAL)

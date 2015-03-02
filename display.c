@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/28 17:11:38 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 17:35:03 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 17:38:29 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ int			display_grid(t_prgm *prgm)
 			//prgm->clr_pair = get_tile_color((prgm->grid[x][y]).value);
 			if ((prgm->grid[x][y]).value == 0)
 				prgm->clr_pair = (prgm->grid[x][y]).value + 1;
+			else if ((prgm->grid[x][y]).value > 64)
+				prgm->clr_pair = 65;
 			else
 				prgm->clr_pair = (prgm->grid[x][y]).value;
 			display_frame(prgm, x, y);
