@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/01 18:05:28 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/01 23:07:39 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 22:36:01 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 static void	cp_left_2(t_prgm *prgm, int y, int old, int new)
 {
-	while (old < SQUARE_RANGE)
+	while (old < prgm->n)
 	{
 		DUP = 0;
-		while (old < SQUARE_RANGE && (prgm->grid[y][old]).value == 0)
+		while (old < prgm->n && (prgm->grid[y][old]).value == 0)
 			++old;
 		I = 1;
-		while (old < SQUARE_RANGE - 1 && old + I < SQUARE_RANGE
+		while (old < prgm->n - 1 && old + I < prgm->n
 			&& ((prgm->grid[y][old + I]).value == 0
 			|| (prgm->grid[y][old + I]).value == (prgm->grid[y][old]).value))
 		{
@@ -33,15 +33,15 @@ static void	cp_left_2(t_prgm *prgm, int y, int old, int new)
 				DUP = I;
 			++I;
 		}
-		if (old < SQUARE_RANGE && DUP == 0)
+		if (old < prgm->n && DUP == 0)
 			(prgm->new[y][new++]).value = (prgm->grid[y][old++]).value;
-		else if (old < SQUARE_RANGE)
+		else if (old < prgm->n)
 		{
 			(prgm->new[y][new++]).value = 2 * (prgm->grid[y][old + DUP]).value;
 			old += DUP + 1;
 		}
 	}
-	while (new < SQUARE_RANGE)
+	while (new < prgm->n)
 		(prgm->new[y][new++]).value = 0;
 }
 
@@ -76,13 +76,13 @@ static void cp_right_2(t_prgm *prgm, int y, int old, int new)
 
 static void cp_up_2(t_prgm *prgm, int x, int old, int new)
 {
-	while (old < SQUARE_RANGE)
+	while (old < prgm->n)
 	{
 		DUP = 0;
-		while (old < SQUARE_RANGE && (prgm->grid[old][x]).value == 0)
+		while (old < prgm->n && (prgm->grid[old][x]).value == 0)
 			++old;
 		I = 1;
-		while (old < SQUARE_RANGE - 1 && old + I < SQUARE_RANGE
+		while (old < prgm->n - 1 && old + I < prgm->n
 			&& ((prgm->grid[old + I][x]).value == 0
 			|| (prgm->grid[old][x]).value == (prgm->grid[old + I][x]).value))
 		{
@@ -91,15 +91,15 @@ static void cp_up_2(t_prgm *prgm, int x, int old, int new)
 				DUP = I;
 			++I;
 		}
-		if (old < SQUARE_RANGE && DUP == 0)
+		if (old < prgm->n && DUP == 0)
 			(prgm->new[new++][x]).value = (prgm->grid[old++][x]).value;
-		else if (old < SQUARE_RANGE)
+		else if (old < prgm->n)
 		{
 			(prgm->new[new++][x]).value = 2 * (prgm->grid[old + DUP][x]).value;
 			old += DUP + 1;
 		}
 	}
-	while (new < SQUARE_RANGE)
+	while (new < prgm->n)
 		(prgm->new[new++][x]).value = 0;
 }
 
@@ -132,28 +132,49 @@ static void	cp_down_2(t_prgm *prgm, int x, int old, int new)
 		(prgm->new[new--][x]).value = 0;
 }
 
+
+void		compute_new_state(t_prgm *prgm, int input, int cst)
+{
+	while (cst < prgm->n)
+	{
+		if (input == KEY_RIGHT)
+			cp_right_2(prgm, cst++, prgm->n - 1, prgm->n - 1);
+		else if (input == KEY_LEFT)
+			cp_left_2(prgm, cst++, 0, 0);
+		else if (input == KEY_UP)
+			cp_up_2(prgm, cst++, 0, 0);
+		else if (input == KEY_DOWN)
+			cp_down_2(prgm, cst++, prgm->n - 1, prgm->n - 1);
+		else if (input == KEY_ESC)
+			exit_game(prgm);
+		else
+			++cst;
+	}
+}
+/*
 void		compute_new_state(t_prgm *prgm, int input, int cst)
 {
 	if (input == KEY_RIGHT)
 	{
-		while (cst < SQUARE_RANGE)
-			cp_right_2(prgm, cst++, SQUARE_RANGE - 1, SQUARE_RANGE - 1);
+		while (cst < prgm->n)
+			cp_right_2(prgm, cst++, prgm->n - 1, prgm->n - 1);
 	}
 	else if (input == KEY_LEFT)
 	{
-		while (cst < SQUARE_RANGE)
+		while (cst < prgm->n)
 			cp_left_2(prgm, cst++, 0, 0);
 	}
 	else if (input == KEY_UP)
 	{
-		while (cst < SQUARE_RANGE)
+		while (cst < prgm->n)
 			cp_up_2(prgm, cst++, 0, 0);
 	}
 	else if (input == KEY_DOWN)
 	{
-		while (cst < SQUARE_RANGE)
-			cp_down_2(prgm, cst++, SQUARE_RANGE - 1, SQUARE_RANGE - 1);
+		while (cst < prgm->n)
+			cp_down_2(prgm, cst++, prgm->n - 1, prgm->n - 1);
 	}
 	else if (input == KEY_ESC)
 		exit_game(prgm);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/01 21:26:14 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 21:26:57 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 23:44:44 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <stdio.h>
 
-static int	count_free_tiles(t_tile grid[SQUARE_RANGE][SQUARE_RANGE])
+static int	count_free_tiles(t_tile grid[SQUARE_RANGE][SQUARE_RANGE], int n)
 {
 	int	free;
 	int	i;
@@ -23,10 +23,10 @@ static int	count_free_tiles(t_tile grid[SQUARE_RANGE][SQUARE_RANGE])
 
 	free = 0;
 	i = 0;
-	while (i < SQUARE_RANGE)
+	while (i < n)
 	{
 		j = 0;
-		while (j < SQUARE_RANGE)
+		while (j < n)
 		{
 			//mvprintw(TXT_Y + 2, 1, "[%d %d] = %d", i, j, (grid[i][j]).value);
 
@@ -42,8 +42,6 @@ static int	count_free_tiles(t_tile grid[SQUARE_RANGE][SQUARE_RANGE])
 		}
 		++i;
 	}
-	//mvprintw(TXT_Y + 2, 1, "free = %d", free);
-	//fprintf(stderr, "size = %d\n", free);
 	return (free);
 }
 
@@ -53,15 +51,15 @@ int			create_new_tile(t_prgm *prgm)
 	int	j;
 	int	new;
 
-	if (!(free = count_free_tiles(prgm->grid)))
+	if (!(free = count_free_tiles((prgm->grid), prgm->n)))
 		return (ERR_SQUARE_FULL);
 	new = rand() % free + 1;
 	free = 0;
 	prgm->i = -1;
-	while (++(prgm->i) < SQUARE_RANGE)
+	while (++(prgm->i) < prgm->n)
 	{
 		j = -1;
-		while (++j < SQUARE_RANGE)
+		while (++j < prgm->n)
 		{
 			if ((prgm->grid[prgm->i][j]).value == 0)
 			{

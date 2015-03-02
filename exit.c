@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:55:16 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 21:24:57 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 22:45:37 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 void	exit_on_signal(int signal)
 {
 	(void)signal;
+	attron(COLOR_PAIR(COLOR_TEXT));
 	mvprintw(TXT_Y + 2, 0, "%s", "Thanks for playing! Your score was: \n");
+	attroff(COLOR_PAIR(COLOR_TEXT));
 	sleep(1);
 	init_color(COLOR_BLACK, 0, 0, 0);
 	init_color(COLOR_RED, 1000, 0, 0);
@@ -52,18 +54,15 @@ int		is_power_2(int value)
 	int	is_pow;
 	int	i;
 
-	return (1);
 	is_pow = 0;
 	i = 0;
 	while (i < 32)
 	{
-		if ((value & 1 << i) == 1)
-		{
-			if (is_pow == 1)
-				return (0);
-			is_pow = 1;
-		}
+		if ((value & (1 << i)) == (1 << i))
+			++is_pow;
 		++i;
 	}
+	if (is_pow > 1)
+		return (0);
 	return (1);
 }

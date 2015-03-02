@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/01 23:07:00 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 21:13:16 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 23:50:48 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@
 # include <ncurses.h>
 # include "libft.h"
 
-# define SQUARE_RANGE	4
+# define SQUARE_RANGE	6
 # define SQUARE_SIZE_Y	16
 # define SQUARE_SIZE_X	8
 # define KEY_ESC		27
 
 # define COLOR_BACK		204
-
-# define COLOR_ELSE		205
 
 # define COLOR_F_0		206
 # define COLOR_F_2		207
@@ -54,11 +52,14 @@
 # define COLOR_B_2048	230
 # define COLOR_B_4096	231
 
+# define COLOR_TEXT		136
+
+#define TXT_X			((SQUARE_RANGE + 1) * (SQUARE_SIZE_Y) + 1)
 #define TXT_Y			((SQUARE_RANGE + 1) * (SQUARE_SIZE_X) + 2)
 
 enum					e_const
 {
-	WIN_VALUE = 32
+	WIN_VALUE = 16
 };
 
 enum					e_ret_value
@@ -102,11 +103,11 @@ typedef struct			s_prgm
 {
 	t_tile				grid[SQUARE_RANGE][SQUARE_RANGE];
 	t_tile				new[SQUARE_RANGE][SQUARE_RANGE];
-//	int					back_clr;
 	int					clr_pair;
 	int					i;
 	int					dup;
 	WINDOW				*win;
+	int					n;
 	//int					width;
 	//int					height;
 	int					cont;

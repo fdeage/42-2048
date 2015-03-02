@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:38:28 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 21:31:53 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 23:53:01 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "game_2048.h"
 #include "libft.h"
 
-static int	get_score(t_tile grid[SQUARE_RANGE][SQUARE_RANGE])
+static int	get_score(t_tile grid[SQUARE_RANGE][SQUARE_RANGE], int n)
 {
 	int	x;
 	int	y;
@@ -23,10 +23,10 @@ static int	get_score(t_tile grid[SQUARE_RANGE][SQUARE_RANGE])
 
 	x = 0;
 	highest = 0;
-	while (x < SQUARE_RANGE)
+	while (x < n)
 	{
 		y = 0;
-		while (y < SQUARE_RANGE)
+		while (y < n)
 		{
 			if ((grid[x][y]).value > highest)
 				highest = (grid[x][y]).value;
@@ -35,6 +35,12 @@ static int	get_score(t_tile grid[SQUARE_RANGE][SQUARE_RANGE])
 		++x;
 	}
 	return (highest);
+}
+
+static void	display_score(WINDOW *win, int score, int x, int y)
+{
+	mvwprintw(win, y / 2, x, "%s", "Score: ");
+	mvwprintw(win, y / 2, x + 8, "%d", score);
 }
 
 static int	handle_input(t_prgm *prgm, int input)
@@ -56,8 +62,8 @@ static int	prompt_continue(t_prgm *prgm)
 	int	ch;
 
 	mvwprintw(prgm->win, TXT_Y, 1, "%s", "You reached ");
-	mvwprintw(prgm->win, TXT_Y, 15, "%d", prgm->score);
-	mvwprintw(prgm->win, TXT_Y, 18, "%s", "! Continue ? [Y/N]\n");
+	mvwprintw(prgm->win, TXT_Y, 13, "%d", prgm->score);
+	mvwprintw(prgm->win, TXT_Y, 16, "%s", "! Continue ? [y/n]\n");
 	echo();
 	ret = 1;
 	while (ret == 1)
@@ -93,7 +99,7 @@ int			run_2048(t_prgm *prgm)
 		{
 			ft_memcpy(prgm->grid, prgm->new, sizeof(prgm->grid));
 			ft_bzero(prgm->new, sizeof(prgm->grid));
-			prgm->score = get_score(prgm->grid);
+			prgm->score = get_score(prgm->grid, prgm->n);
 			prgm->highest = ft_max(prgm->highest, prgm->score);
 			if (create_new_tile(prgm) == ERR_SQUARE_FULL)
 			{
@@ -102,6 +108,7 @@ int			run_2048(t_prgm *prgm)
 					exit_game(prgm);
 			}
 			display_grid(prgm);
+			display_score(prgm->win, prgm->score, TXT_X, TXT_Y);
 		}
 	}
 	return (prompt_continue(prgm));

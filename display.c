@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/28 17:11:38 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 20:19:20 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 22:39:58 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ int			display_grid(t_prgm *prgm)
 	int		y;
 
 	x = 0;
-	while (x < SQUARE_RANGE)
+	while (x < prgm->n)
 	{
 		y = 0;
-		while (y < SQUARE_RANGE)
+		while (y < prgm->n)
 		{
 			prgm->clr_pair = get_tile_color((prgm->grid[x][y]).value);
 			display_frame(prgm, x, y);
