@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/01 23:07:00 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 23:50:48 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 23:54:46 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ typedef struct			s_prgm
 	int					dup;
 	WINDOW				*win;
 	int					n;
-	//int					width;
-	//int					height;
+	int					width;
+	int					height;
 	int					cont;
 	int					highest;
 	time_t				begin_time;

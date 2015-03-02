@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/28 17:11:38 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 22:39:58 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 23:57:18 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,21 @@ static void	print_tile(t_prgm *prgm, int x, int y)
 	int	j;
 
 	i = 0;
-	while (i < SQUARE_SIZE_X)
+	while (i < prgm->width)
 	{
 		j = 0;
-		while (j < SQUARE_SIZE_Y)
+		while (j < prgm->height)
 		{
-			if (i == 0 || i == SQUARE_SIZE_X - 1 || j == 0
-				|| j == SQUARE_SIZE_Y - 1)
-				print_char(prgm, ' ', ((SQUARE_SIZE_X + 1) * x) + i + 1,
-				((SQUARE_SIZE_Y + 2) * y) + j + 1);
-			if (i == ((SQUARE_SIZE_X + 1) / 2 - 1) && j ==
-				((SQUARE_SIZE_Y + 1) / 2 - 1) && (prgm->grid[x][y]).value > 0)
+			if (i == 0 || i == prgm->width - 1 || j == 0
+				|| j == prgm->height - 1)
+				print_char(prgm, ' ', ((prgm->width + 1) * x) + i + 1,
+				((prgm->height + 2) * y) + j + 1);
+			if (i == ((prgm->width + 1) / 2 - 1) && j ==
+				((prgm->height + 1) / 2 - 1) && (prgm->grid[x][y]).value > 0)
 			{
 				print_nbr(prgm, (prgm->grid[x][y]).value,
-					((SQUARE_SIZE_X + 1) * x) + i + 1,
-					((SQUARE_SIZE_Y + 2) * y) + j + 1);
+					((prgm->width + 1) * x) + i + 1,
+					((prgm->height + 2) * y) + j + 1);
 			}
 			++j;
 		}
@@ -65,13 +65,13 @@ static void	display_frame(t_prgm *prgm, int x, int y)
 	int	j;
 
 	i = 0;
-	while (i < SQUARE_SIZE_X)
+	while (i < prgm->width)
 	{
 		j = 0;
-		while (j < SQUARE_SIZE_Y)
+		while (j < prgm->height)
 		{
-			print_char(prgm, ' ', ((SQUARE_SIZE_X + 1) * x) + i + 1,
-				((SQUARE_SIZE_Y + 2) * y) + j + 1);
+			print_char(prgm, ' ', ((prgm->width + 1) * x) + i + 1,
+				((prgm->height + 2) * y) + j + 1);
 			++j;
 		}
 		++i;

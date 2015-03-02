@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:16:53 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 23:44:29 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 23:58:51 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void	init_grid(t_prgm *prgm, int it)
 static int	init_game(t_prgm *prgm)
 {
 	srand(time(NULL));
+	prgm->n = SQUARE_RANGE;
 	init_grid(prgm, 0);
 	prgm->win = NULL;
 	if (init_ncurses_screen(prgm) == ERR_INIT_FAILED)
@@ -93,8 +94,8 @@ static int	init_game(t_prgm *prgm)
 		wattroff(prgm->win, COLOR_PAIR(COLOR_TEXT));
 		exit_game(prgm);
 	}
-	//prgm->width = 0;
-	//prgm->height = 0;
+	prgm->width = SQUARE_SIZE_X;
+	prgm->height = SQUARE_SIZE_Y;
 	prgm->cont = 0;
 	prgm->clr_pair = -1;
 	prgm->highest = 0;
@@ -111,7 +112,6 @@ int			main(int ac, char *av[])
 
 	(void)ac;
 	(void)av;
-	prgm.n = SQUARE_RANGE;
 	if (init_game(&prgm) != RET_OK)
 	{
 		ft_putstr_color("Init failed.\n", COL_RED);
