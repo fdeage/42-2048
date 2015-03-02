@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:16:53 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 19:08:16 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 19:15:00 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	init_ncurses_screen(t_prgm *prgm)
 	init_pair(8, COLOR_32, COLOR_8);
 	init_pair(16, COLOR_8, COLOR_16);
 	init_pair(32, COLOR_8, COLOR_32);
-	init_pair(33, COLOR_WHITE, COLOR_ELSE);
+	init_pair(33, COLOR_8, COLOR_ELSE);
 	fprintf(stderr, "nbcol = %d nbcolopair = %d\n", COLORS, COLOR_PAIRS);
 	return (RET_OK);
 }

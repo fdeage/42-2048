@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:38:28 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 18:52:30 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 19:25:39 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <ncurses.h>
 #include "game_2048.h"
 #include "libft.h"
+
+#define TXT_Y	((SQUARE_RANGE + 1) * (SQUARE_SIZE_X) + 2)
 
 static int	get_score(t_tile grid[SQUARE_RANGE][SQUARE_RANGE])
 {
@@ -52,15 +54,12 @@ static int	handle_input(t_prgm *prgm, int input)
 
 static int	prompt_continue(t_prgm *prgm)
 {
-	char	buf[12];
-	int		ret;
-	int		ch;
+	int	ret;
+	int	ch;
 
-	ft_bzero(buf, 12);
-	ft_putstr_color("\nYou reached ", COL_LIGHT_GREEN);
-	ft_itoatab(prgm->score, buf);
-	ft_putstr_color(buf, COL_GREEN);
-	ft_putstr_color("! Continue ? [Y/N]\n", COL_LIGHT_GREEN);
+	mvwprintw(prgm->win, TXT_Y, 1, "%s", "You reached ");
+	mvwprintw(prgm->win, TXT_Y, 15, "%d", prgm->score);
+	mvwprintw(prgm->win, TXT_Y, 18, "%s", "! Continue ? [Y/N]\n");
 	echo();
 	ret = 1;
 	while (ret == 1)
@@ -70,7 +69,9 @@ static int	prompt_continue(t_prgm *prgm)
 		{
 			prgm->cont = 1;
 			noecho();
-			ft_putstr_color("Continue !\n", COL_LIGHT_GREEN);
+			mvwprintw(prgm->win, TXT_Y, 0, "%s",
+				"     INFINITE MODE                     ");
+			mvwprintw(prgm->win, TXT_Y + 1, 0, "%s", "  ");
 			ret = 0;
 			return (CONTINUE_GAME);
 		}
