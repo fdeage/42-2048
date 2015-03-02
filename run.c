@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:38:28 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 17:47:41 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 18:52:30 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ static int	prompt_continue(t_prgm *prgm)
 {
 	char	buf[12];
 	int		ret;
+	int		ch;
 
 	ft_bzero(buf, 12);
-	ft_putstr_color("You reached ", COL_LIGHT_GREEN);
+	ft_putstr_color("\nYou reached ", COL_LIGHT_GREEN);
 	ft_itoatab(prgm->score, buf);
 	ft_putstr_color(buf, COL_GREEN);
 	ft_putstr_color("! Continue ? [Y/N]\n", COL_LIGHT_GREEN);
@@ -64,16 +65,16 @@ static int	prompt_continue(t_prgm *prgm)
 	ret = 1;
 	while (ret == 1)
 	{
-		if (read(0, &buf, 1) == -1)
-			return (LEAVE_GAME);
-		if (buf[0] == 'Y' || buf[0] == 'y')
+		ch = getch();
+		if (ch == 'Y' || ch == 'y')
 		{
 			prgm->cont = 1;
 			noecho();
+			ft_putstr_color("Continue !\n", COL_LIGHT_GREEN);
 			ret = 0;
 			return (CONTINUE_GAME);
 		}
-		else if (buf[0] == 'N' || buf[0] == 'n')
+		else if (ch == 'N' || ch == 'n')
 			return (LEAVE_GAME);
 	}
 	return (RET_OK);

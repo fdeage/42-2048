@@ -6,13 +6,14 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:16:53 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 17:45:21 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 19:08:16 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <signal.h>
 #include <ncurses.h>
+#include <unistd.h>
 #include "game_2048.h"
 
 static void	handle_signals(int s)
@@ -35,14 +36,14 @@ static int	init_ncurses_screen(t_prgm *prgm)
 	}
 	else
 		start_color();
-	init_pair(1, COLOR_BLACK, COLOR_BLACK);
-	init_pair(2, COLOR_RED, COLOR_2);
-	init_pair(4, COLOR_RED, COLOR_4);
-	init_pair(8, COLOR_RED, COLOR_8);
-	init_pair(16, COLOR_RED, COLOR_16);
-	init_pair(32, COLOR_BLUE, COLOR_32);
-	init_pair(64, COLOR_RED, COLOR_64);
-	init_pair(65, COLOR_WHITE, COLOR_ELSE);
+	init_pair(1, COLOR_BLACK, COLOR_BACK);
+	init_pair(3, COLOR_BLACK, COLOR_0);
+	init_pair(2, COLOR_8, COLOR_2);
+	init_pair(4, COLOR_8, COLOR_4);
+	init_pair(8, COLOR_32, COLOR_8);
+	init_pair(16, COLOR_8, COLOR_16);
+	init_pair(32, COLOR_8, COLOR_32);
+	init_pair(33, COLOR_WHITE, COLOR_ELSE);
 	fprintf(stderr, "nbcol = %d nbcolopair = %d\n", COLORS, COLOR_PAIRS);
 	return (RET_OK);
 }
@@ -113,6 +114,7 @@ int			main(void)
 	ret = CONTINUE_GAME;
 	while (ret == CONTINUE_GAME)
 		ret = run_2048(&prgm);
+	sleep(1);
 	exit_game(&prgm);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/01 22:11:58 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 17:55:36 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 19:02:58 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	get_tile_color(int value)
 {
 	if (value == 0)
-		return (1);
-	else if (value > 64)
-		return (65);
+		return (3);
+	else if (value > 32)
+		return (33);
 	return (value);
 }

@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/01 23:07:00 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 17:55:19 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 19:00:58 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@
 # define SQUARE_SIZE_X	8
 # define KEY_ESC		27
 
-# define COLOR_0		COLOR_BLACK
-# define COLOR_2		COLOR_WHITE
-# define COLOR_4		COLOR_YELLOW
-# define COLOR_8		COLOR_GREEN
-# define COLOR_16		COLOR_BLUE
-# define COLOR_32		COLOR_MAGENTA
-# define COLOR_64		COLOR_CYAN
-# define COLOR_ELSE		COLOR_RED
+# define COLOR_BACK		0
+# define COLOR_0		1
+# define COLOR_2		2
+# define COLOR_4		3
+# define COLOR_8		4
+# define COLOR_16		5
+# define COLOR_32		6
+# define COLOR_ELSE		7
 
 enum					e_const
 {
