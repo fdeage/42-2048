@@ -6,7 +6,7 @@
 #    By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/29 16:38:06 by fdeage            #+#    #+#              #
-#    Updated: 2015/03/02 18:03:10 by fdeage           ###   ########.fr        #
+#    Updated: 2015/03/03 00:18:04 by fdeage           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -19,7 +19,7 @@ SRC 		=	main.c	\
 				run.c	\
 				compute.c	\
 				display.c	\
-				redim.c	\
+				resize.c	\
 				get_color.c	\
 				exit.c
 

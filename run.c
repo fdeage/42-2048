@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:38:28 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/03 00:05:07 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/03 00:13:01 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,11 @@ int			run_2048(t_prgm *prgm)
 	while (prgm->score < WIN_VALUE || prgm->cont)
 	{
 		input = getch();
-		if (resize_screen(input) == REDIM_SIGNAL)
+		if (input == REDIM_SIGNAL)
+		{
+			resize_screen(input);
 			display_grid(prgm);
+		}
 		if (handle_input(prgm, input) == KEY_ARROWS
 			&& ft_memcmp(prgm->new, prgm->grid, sizeof(prgm->grid)) != 0)
 		{

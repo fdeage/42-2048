@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/01 23:07:00 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/03 00:04:56 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/03 00:11:34 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ typedef struct			s_prgm
 	int					n;
 	int					width;
 	int					height;
+	//int					line;
+	//int					col;
 	int					cont;
 	int					highest;
 	time_t				begin_time;
@@ -154,7 +156,7 @@ int						create_new_tile(t_prgm *prgm);
 ** resize.c
 */
 
-int						resize_screen(int input);
+void					resize_screen(int input);
 
 /*
 ** get_color.c
