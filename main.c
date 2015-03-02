@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:16:53 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 23:58:51 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/03 00:00:52 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	handle_signals(int s)
 {
 	(void)s;
 	signal(SIGINT, exit_on_signal);
+	signal(SIGWINCH, redim_screen);
 }
 
 static int	init_ncurses_screen(t_prgm *prgm)
@@ -102,6 +103,7 @@ static int	init_game(t_prgm *prgm)
 	prgm->begin_time = time(NULL);
 	prgm->score = 0;
 	reinit_colors();
+	handle_signals(0);
 	return (RET_OK);
 }
 
@@ -118,7 +120,6 @@ int			main(int ac, char *av[])
 		return (EXIT_FAILURE);
 	}
 	display_grid(&prgm);
-	handle_signals(0);
 	ret = CONTINUE_GAME;
 	while (ret == CONTINUE_GAME)
 		ret = run_2048(&prgm);

@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/01 23:07:00 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 23:54:46 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/03 00:04:56 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,10 +151,10 @@ int						game_lost(t_prgm *prgm);
 int						create_new_tile(t_prgm *prgm);
 
 /*
-** redim.c
+** resize.c
 */
 
-int						redim_screen(int input);
+int						resize_screen(int input);
 
 /*
 ** get_color.c

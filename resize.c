@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redim.c                                            :+:      :+:    :+:   */
+/*   resize.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/01 16:25:16 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/01 23:11:44 by fdeage           ###   ########.fr       */
+/*   Created: 2015/03/03 00:04:38 by fdeage            #+#    #+#             */
+/*   Updated: 2015/03/03 00:04:46 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <ncurses.>
 #include "game_2048.h"
 
-int	redim_screen(int input)
+int	resize_screen(int input)
 {
 	(void)input;
+
 	return (NO_REDIM);
 }
