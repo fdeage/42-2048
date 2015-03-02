@@ -6,7 +6,7 @@
 #    By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/29 16:38:06 by fdeage            #+#    #+#              #
-#    Updated: 2015/03/02 15:34:40 by fdeage           ###   ########.fr        #
+#    Updated: 2015/03/02 18:03:10 by fdeage           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -38,7 +38,7 @@ EXTRAFLAGS	=	--analyze -Weverything -Wno-missing-prototypes	\
 CC			=	$(CLANG)
 GCC			=	/usr/local/bin/gcc
 CLANG		=	/usr/bin/clang
-RM			=	/bin/rm -v
+RM			=	/bin/rm -fv
 MAKE		=	/usr/bin/make
 
 all			:	$(NAME)

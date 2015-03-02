@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/28 17:11:38 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/02 17:38:29 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/02 17:55:25 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,17 @@
 static void	print_char
 	(t_prgm *prgm, char ch, int x, int y)
 {
-	//init_pair(1, COLOR_RED, );
 	wattron(prgm->win, COLOR_PAIR(prgm->clr_pair));
 	mvwaddch(prgm->win, x, y, ch);
 	wattroff(prgm->win, COLOR_PAIR(prgm->clr_pair));
-	//wattroff(prgm->win, COLOR_PAIR(1));
 }
 
 static void	print_nbr
 	(t_prgm *prgm, int nbr, int y, int x)
 {
-	char	tab[12];
 
-	ft_itoatab(nbr, tab);
-	//init_pair(1, COLOR_RED, COLOR_BLACK);
-	//wattron(prgm->win, COLOR_PAIR(1));
 	wattron(prgm->win, COLOR_PAIR(prgm->clr_pair));
-	mvwprintw(prgm->win, y, x, "%s", tab);
+	mvwprintw(prgm->win, y, x, "%d", nbr);
 	wattroff(prgm->win, COLOR_PAIR(1));
 }
 
@@ -44,8 +38,6 @@ static void	print_tile(t_prgm *prgm, int x, int y)
 	int	j;
 	//int	len;
 
-	//prgm->back_clr = get_tile_color((prgm->grid[x][y]).value);
-	//prgm->clr_pair = get_tile_color((prgm->grid[x][y]).value);
 	i = 0;
 	while (i < SQUARE_SIZE_X)
 	{
@@ -99,13 +91,7 @@ int			display_grid(t_prgm *prgm)
 		y = 0;
 		while (y < SQUARE_RANGE)
 		{
-			//prgm->clr_pair = get_tile_color((prgm->grid[x][y]).value);
-			if ((prgm->grid[x][y]).value == 0)
-				prgm->clr_pair = (prgm->grid[x][y]).value + 1;
-			else if ((prgm->grid[x][y]).value > 64)
-				prgm->clr_pair = 65;
-			else
-				prgm->clr_pair = (prgm->grid[x][y]).value;
+			prgm->clr_pair = get_tile_color((prgm->grid[x][y]).value);
 			display_frame(prgm, x, y);
 			print_tile(prgm, x, y);
 			++y;
