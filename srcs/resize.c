@@ -6,7 +6,7 @@
 /*   By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 00:04:38 by fdeage            #+#    #+#             */
-/*   Updated: 2015/03/03 00:17:39 by fdeage           ###   ########.fr       */
+/*   Updated: 2015/03/03 00:20:15 by fdeage           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,25 @@
 
 # include<unistd.h>
 
+# include<string.h>
+# include<signal.h>
+# include<sys/ioctl.h>
+
+
 void	resize_screen(int input)
 {
 	int	y;
 	int	x;
 
 	x = 0;
-	x = y;
+	y = 0;
 	//getmaxyx(win, y, x);
 	//if (is_term_resized(lines, int columns);
 	(void)input;
 
 	struct winsize	w;
 
-	//ioctl(0, TIOCGWINSZ, &w);
+	ioctl(0, TIOCGWINSZ, &w);
 	COLS = w.ws_col;
 	LINES = w.ws_row;
 	wresize(stdscr, LINES, COLS);
@@ -39,5 +44,5 @@ void	resize_screen(int input)
 	//for (i = 0; i < COLS; i++)
 	//	mvaddch(1, i, '*');
 	refresh();
-	return (NO_REDIM);
+	return ;
 }
