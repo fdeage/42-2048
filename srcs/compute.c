@@ -151,30 +151,3 @@ void		compute_new_state(t_prgm *prgm, int input, int cst)
 			++cst;
 	}
 }
-/*
-void		compute_new_state(t_prgm *prgm, int input, int cst)
-{
-	if (input == KEY_RIGHT)
-	{
-		while (cst < prgm->n)
-			cp_right_2(prgm, cst++, prgm->n - 1, prgm->n - 1);
-	}
-	else if (input == KEY_LEFT)
-	{
-		while (cst < prgm->n)
-			cp_left_2(prgm, cst++, 0, 0);
-	}
-	else if (input == KEY_UP)
-	{
-		while (cst < prgm->n)
-			cp_up_2(prgm, cst++, 0, 0);
-	}
-	else if (input == KEY_DOWN)
-	{
-		while (cst < prgm->n)
-			cp_down_2(prgm, cst++, prgm->n - 1, prgm->n - 1);
-	}
-	else if (input == KEY_ESC)
-		exit_game(prgm);
-}
-*/

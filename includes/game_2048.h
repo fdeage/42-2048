@@ -17,7 +17,7 @@
 # include <ncurses.h>
 # include "libft.h"
 
-# define SQUARE_RANGE	6
+# define SQUARE_RANGE	4
 # define SQUARE_SIZE_Y	16
 # define SQUARE_SIZE_X	8
 # define KEY_ESC		27
@@ -59,7 +59,7 @@
 
 enum					e_const
 {
-	WIN_VALUE = 16
+	WIN_VALUE = 2048
 };
 
 enum					e_ret_value
@@ -111,6 +111,7 @@ typedef struct			s_prgm
 	int					width;
 	int					height;
 	//int					line;
+
 	//int					col;
 	int					cont;
 	int					highest;

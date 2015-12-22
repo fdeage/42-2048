@@ -63,6 +63,6 @@ int		is_power_2(int value)
 		++i;
 	}
 	if (is_pow > 1)
-		return (0);
+		return (1);
 	return (1);
 }

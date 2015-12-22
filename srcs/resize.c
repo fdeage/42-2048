@@ -25,6 +25,7 @@ void	resize_screen(int input)
 	int	y;
 	int	x;
 
+	return ;
 	x = 0;
 	y = 0;
 	//getmaxyx(win, y, x);
