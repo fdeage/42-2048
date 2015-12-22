@@ -44,12 +44,11 @@ all				:	$(NAME)
 $(NAME)			:	$(OBJ)
 					$(MAKE) -C ./libft
 					$(CC) $(FLAGS) $(INC) $(LINK) $(OBJ) -o $(NAME)
+
 clean			:
-					$(MAKE) -C ./libft clean
 					$(RM) $(DIRC_SRC)/$(OBJ)
 
 fclean			:	clean
-					$(MAKE) -C ./libft fclean
 					$(RM) $(NAME)
 
 re				:	fclean all
