@@ -26,7 +26,8 @@ SRC 			=	main.c	\
 OBJ				=	$(addprefix $(DIR_SRC)/, $(SRC:.c=.o))
 
 INC				=	-I ./includes -I ./libft/includes
-LINK			=	-L ./libft -lft -lncurses
+#LINK			=	-L ./libft -lft -lncurses
+LINK			=	-lncurses
 
 FLAGS			=	$(CFLAGS)
 CFLAGS			=	-Wall -Wextra -Werror -Wno-unused-function
@@ -42,8 +43,8 @@ MAKE			=	/usr/bin/make
 all				:	$(NAME)
 
 $(NAME)			:	$(OBJ)
-					$(MAKE) -C ./libft
-					$(CC) $(FLAGS) $(INC) $(LINK) $(OBJ) -o $(NAME)
+#					$(MAKE) -C ./libft
+					$(CC) $(FLAGS) $(INC) $(LINK) libft.a $(OBJ) -o $(NAME)
 
 clean			:
 					$(RM) $(DIRC_SRC)/$(OBJ)
