@@ -14,7 +14,6 @@
 # define LIBFT_H
 
 # include <stdlib.h>
-# include "gnl.h"
 # include "macros.h"
 
 /*
@@ -129,14 +128,6 @@ void		ft_putstr_color_fd(char const *s, char const *color, int fd);
 void		ft_color_switch_fd(char const *color, int fd);
 void		ft_color_reset_fd(int fd);
 
-/*
-** ft_error.c
-*/
-
-t_error		*err1(t_error *error, const char *file, const char *func, int line);
-t_error		*err2(char *msg1, char *msg2, t_err_status status);
-int			ft_err_i(t_error *err, int ret_value, int fd);
-void		*ft_err_p(t_error *err, void *ret_value, int fd);
 
 /*
 ** ft_minmax.c

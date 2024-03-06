@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "game_2048.h"
-
-
 #include <stdio.h>
 
 static int	count_free_tiles(t_tile grid[SQUARE_RANGE][SQUARE_RANGE], int n)
@@ -28,12 +26,6 @@ static int	count_free_tiles(t_tile grid[SQUARE_RANGE][SQUARE_RANGE], int n)
 		j = 0;
 		while (j < n)
 		{
-			//mvprintw(TXT_Y + 2, 1, "[%d %d] = %d", i, j, (grid[i][j]).value);
-
-			//mvprintw(TXT_Y + 1, 1, "%d", i);
-			//mvprintw(TXT_Y + 1, 4, "%d", j);
-			//mvprintw(TXT_Y + 1, 7, "%d", (grid[i][j]).value);
-			//fprintf(stderr, "[%d, %d] = %d\n", i, j, (grid[i][j]).value);
 			if ((grid[i][j]).value == 0)
 			{
 				++free;

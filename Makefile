@@ -1,63 +1,34 @@
-#******************************************************************************#
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: fdeage <fdeage@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2013/11/29 16:38:06 by fdeage            #+#    #+#              #
-#    Updated: 2015/03/03 00:26:04 by fdeage           ###   ########.fr        #
-#                                                                              #
-#******************************************************************************#
+NAME=2048
 
-NAME			=	game_2048
+CC=gcc
+FLAGS=-Wall -Wextra -Werror
+EXTRAFLAGS=-pedantic -Weverything -Wno-missing-prototypes
 
-DIR_SRC			=	srcs
-SRC 			=	main.c	\
-					reinit_color.c	\
-					new_tile.c	\
-					run.c	\
-					compute.c	\
-					display.c	\
-					resize.c	\
-					get_color.c	\
-					exit.c
+LIBFT=./libft.a
+SRC_DIR=./src
+INCLUDE_DIR=./include
 
-OBJ				=	$(addprefix $(DIR_SRC)/, $(SRC:.c=.o))
+SRC=$(wildcard $(SRC_DIR)/*.c)
+OBJ=$(SRC:.c=.o)
 
-INC				=	-I ./includes -I ./libft/includes
-#LINK			=	-L ./libft -lft -lncurses
-LINK			=	-lncurses
+COL_B=\033[1;34m
+COL_G=\033[1;32m
+COL_RES=\033[0m
 
-FLAGS			=	$(CFLAGS)
-CFLAGS			=	-Wall -Wextra -Werror -Wno-unused-function
-EXTRAFLAGS		=	--analyze -Weverything -Wno-missing-prototypes	\
-					-Qunused-arguments -g3 -pedantic
+all: $(NAME)
 
-CC				=	$(CLANG)
-GCC				=	/usr/local/bin/gcc
-CLANG			=	/usr/bin/clang
-RM				=	/bin/rm -fv
-MAKE			=	/usr/bin/make
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -lncurses libft.a -o $(NAME)
 
-all				:	$(NAME)
+%.o: %.c
+	$(CC) $(FLAGS) -I$(INCLUDE_DIR) -c $< -o $@
 
-$(NAME)			:	$(OBJ)
-#					$(MAKE) -C ./libft
-					$(CC) $(FLAGS) $(INC) $(LINK) libft.a $(OBJ) -o $(NAME)
+clean:
+	-@rm $(OBJ)
 
-clean			:
-					$(RM) $(DIRC_SRC)/$(OBJ)
+fclean : clean
+	@rm $(NAME)
 
-fclean			:	clean
-					$(RM) $(NAME)
+re: fclean $(NAME)
 
-re				:	fclean all
-
-extra       	:   FLAGS += $(EXTRAFLAGS)
-extra       	:   re
-
-$(DIR_SRC)/%.o	:	$(DIR_SRC)/%.c
-					$(CC) $(FLAGS) $(INC) -c $< -o $@
-
-.PHONY			:	all clean fclean re extra
+.PHONY: all clean fclean re

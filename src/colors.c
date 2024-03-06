@@ -13,17 +13,6 @@
 #include <ncurses.h>
 #include "game_2048.h"
 
-/*
-**	init_color(COLOR_BLACK,0,0,0);
-**	init_color(COLOR_RED,1000,0,0);
-**	init_color(COLOR_GREEN,0,1000,0);
-**	init_color(COLOR_YELLOW,1000,1000,0);
-**	init_color(COLOR_BLUE,0,0,1000);
-**	init_color(COLOR_MAGENTA,1000,0,1000);
-**	init_color(COLOR_CYAN,0,1000,1000);
-**	init_color(COLOR_WHITE,1000,1000,1000);
-*/
-
 static int	r(int value)
 {
 	return ((value * 1000) / 256);
@@ -63,4 +52,21 @@ void		reinit_colors(void)
 	init_color(COLOR_B_1024, r(0xed), r(0xc5), r(0x3f));
 	init_color(COLOR_B_2048, r(0xed), r(0xc2), r(0x20));
 	init_color(COLOR_B_4096, r(0x3c), r(0x3a), r(0x32));
+}
+
+int			get_tile_color(int value)
+{
+	if (value == 0)
+		return (134);
+	else if (value == 256)
+		return (129);
+	else if (value == 512)
+		return (130);
+	else if (value == 1024)
+		return (131);
+	else if (value == 2048)
+		return (132);
+	else if (value == 4096)
+		return (133);
+	return (value);
 }

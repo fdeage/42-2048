@@ -110,9 +110,6 @@ typedef struct			s_prgm
 	int					n;
 	int					width;
 	int					height;
-	//int					line;
-
-	//int					col;
 	int					cont;
 	int					highest;
 	time_t				begin_time;
@@ -160,15 +157,10 @@ int						create_new_tile(t_prgm *prgm);
 void					resize_screen(int input);
 
 /*
-** get_color.c
-*/
-
-int						get_tile_color(int value);
-
-/*
-** reinit_color.c
+** colors.c
 */
 
 void					reinit_colors(void);
+int						get_tile_color(int value);
 
 #endif

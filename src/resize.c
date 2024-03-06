@@ -22,12 +22,12 @@
 
 void	resize_screen(int input)
 {
-	int	y;
-	int	x;
+	// int	y;
+	// int	x;
 
-	return ;
-	x = 0;
-	y = 0;
+	// return ;
+	// x = 0;
+	// y = 0;
 	//getmaxyx(win, y, x);
 	//if (is_term_resized(lines, int columns);
 	(void)input;
@@ -45,5 +45,6 @@ void	resize_screen(int input)
 	//for (i = 0; i < COLS; i++)
 	//	mvaddch(1, i, '*');
 	refresh();
+
 	return ;
 }

@@ -120,7 +120,6 @@ int			main(int ac, char *av[])
 		return (EXIT_FAILURE);
 	}
 	display_grid(&prgm);
-	//printf("test\n");
 	ret = CONTINUE_GAME;
 	while (ret == CONTINUE_GAME)
 		ret = run_2048(&prgm);

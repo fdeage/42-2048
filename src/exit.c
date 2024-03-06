@@ -34,6 +34,7 @@ void	exit_on_signal(int signal)
 	echo();
 	endwin();
 	_exit(0);
+
 	return ;
 }
 
